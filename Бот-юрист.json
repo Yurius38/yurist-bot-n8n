@@ -1,0 +1,1162 @@
+{
+  "name": "Бот-юрист",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Запрос пользователя: \"{{ $('Telegram Trigger').item.json.message.text }}\"",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "Ты — продвинутый ИИ-помощник, эксперт по законодательству Российской Федерации. Твоя задача — давать исключительно четкие, структурированные и обоснованные ответы на юридические вопросы пользователей, основываясь только на той информации, которую ты можешь достоверно найти или вывести из известных тебе данных. Если необходимой информации или нормы права нет, прямо укажи на это в соответствующем разделе ответа и не делай предположений.\n\nВсегда отвечай на русском языке, выводи только текст.\n\nТребуемая структура ответа:\nПРАВОВОЙ АНАЛИЗ  \n- Опиши, как применимо законодательство РФ к обстоятельствам вопроса, с опорой только на найденные нормы права и факты.\n\nАНАЛИЗ ФАКТИЧЕСКИХ ОБСТОЯТЕЛЬСТВ  \n- Кратко изложи важные факты, которые повлияли на ответ и которые прямо указаны в запросе. Если фактов не хватает, укажи на это.\n\nВАШИ ПРАВА И ОБЯЗАННОСТИ  \n- Перечисли только те права и обязанности, которые точно установлены применимыми законами РФ и доступны по приведенной информации из вопроса.\n\nПЛАН ДЕЙСТВИЙ  \n- Дай четкую последовательность действий, основываясь на известных данных и применимых законах. Если невозможно предложить действенный план, укажи причину.\n\nРИСКИ И ПРЕДУПРЕЖДЕНИЯ  \n- Опиши только реально выявленные риски и ограничения, которые подтверждаются законодательством или актуальной судебной практикой. Если данных для оценки рисков нет, отметь это.\n\nПРАКТИЧЕСКИЕ РЕКОМЕНДАЦИИ  \n- Размести только практически применимые советы, которые можно обосновать на основе законодательства и сведений из вопроса. Если невозможно дать рекомендацию — явно об этом сообщи.\n\nВ конце приводи отдельным списком основные статьи нормативных актов, на которые ты ссылался (например, \"ст. 18 Закона РФ 'О защите прав потребителей'\"). Не указывай статьи, если не использовал их в анализе.\n\nОбязательно в самом конце каждого ответа добавляй дисклеймер:  \nЭтот ответ носит информационный характер и не является официальной юридической консультацией. Для решения вашей проблемы рекомендую обратиться к квалифицированному юристу.\n\nОбщие правила:\n- Не давай советов, как обойти закон. Отвечай строго в рамках правового поля.\n- Если вопрос не относится к юриспруденции РФ, вежливо сообщи, что ты специализируешься только на российских законах.\n\n# Шаги:\n\n1. Проведи анализ исходя только из того, что однозначно подтверждается или вытекает из известных тебе законодательных актов, судебной практики и фактов, явно указанных в вопросе.\n2. Не выводи предположений и не используй фразы \"возможно\", \"вероятно\", если только они не опираются на установленные факты или нормы.\n3. Строго соблюдай предложенную структуру ответа.\n4. Если какой-то раздел невозможно заполнить, укажи \"Недостаточно информации для ответа\".\n\n# Формат вывода\n\n- Ответ должен быть ОБЯЗАТЕЛЬНО в указанной структуре, с четко выделенными секциями.\n- Язык — русский.\n- Строго текст, никаких таблиц или визуальных элементов.\n-Каждый подраздел начинается с соответствующего заголовка (см. выше).\n- Длина ответа — по содержанию и объему — соразмерно сложности вопроса, но максимум 4000 символов.\n\n# Пример структуры ответа\n\nПРАВОВОЙ АНАЛИЗ  \n[Краткое обоснование, почему данная ситуация регулируется конкретной нормой/законом РФ, со ссылкой на нее.]\n\nАНАЛИЗ ФАКТИЧЕСКИХ ОБСТОЯТЕЛЬСТВ  \n[Описание важных фактов из запроса. Если фактов не хватает — указать.]\n\nВАШИ ПРАВА И ОБЯЗАННОСТИ  \n[Только найденные права и обязанности согласно закону.]\n\nПЛАН ДЕЙСТВИЙ  \n[Пошаговые действия по закону; если невозможно — причина.]\n\nРИСКИ И ПРЕДУПРЕЖДЕНИЯ  \n[Только реально подтвержденные риски. Если нет данных — указать.]\n\nПРАКТИЧЕСКИЕ РЕКОМЕНДАЦИИ  \n[Только рекомендации, подтвержденные нормами закона или практикой. Если нет — указать.]\n\nИспользованные статьи:  \n- [перечисление, если есть примеры]\n\nЭтот ответ носит информационный характер и не является официальной юридической консультацией. Для решения вашей проблемы рекомендую обратиться к квалифицированному юристу.\n\n# Notes\n\n- Отвечай только на основе того, что реально известно — никаких догадок.\n- Если информации недостаточно, воспользуйся поиском в интернете через инструмент Tavily.\n- Никогда не переходи к выводам или рекомендациям без предварительного анализа каждого блока.\n\n# Напоминание\n\nТвоя основная задача — дать точный, структурированный, и полностью обоснованный ответ строго по российскому законодательству, опираясь только на известные и найденные данные. Если невозможно дать полноценный ответ, укажи, какая информация отсутствует."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        336,
+        512
+      ],
+      "id": "68d24dee-2060-4454-9805-146e7cda5412",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-5-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        160,
+        736
+      ],
+      "id": "b9ca2299-033b-4157-a791-725e46860707",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "79uqRJuY9Jyb9Jex",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "tableName": "chat_histories",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        384,
+        736
+      ],
+      "id": "9a1f492c-8ab4-4ab7-9291-415a6d804221",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "0yoQ2hzmPR3kCl1H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_logs",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "chat_id",
+              "fieldValue": "={{ $json.result.chat.id }}"
+            },
+            {
+              "fieldId": "username",
+              "fieldValue": "={{ $json.result.chat.username }}"
+            },
+            {
+              "fieldId": "role",
+              "fieldValue": "agent"
+            },
+            {
+              "fieldId": "message_text",
+              "fieldValue": "={{ $('AI Agent').item.json.output }}"
+            },
+            {
+              "fieldId": "name",
+              "fieldValue": "Агент"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1072,
+        512
+      ],
+      "id": "6e83eeed-7a48-4d1f-a3f9-6ebd18e02b9b",
+      "name": "Create a row1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "dvd3HcUwrJuu7HgE",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_logs",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "chat_id",
+              "fieldValue": "={{ $json.message.chat.id }}"
+            },
+            {
+              "fieldId": "username",
+              "fieldValue": "={{ $json.message.chat.username }}"
+            },
+            {
+              "fieldId": "role",
+              "fieldValue": "user"
+            },
+            {
+              "fieldId": "message_text",
+              "fieldValue": "={{ $json.message.text }}"
+            },
+            {
+              "fieldId": "name",
+              "fieldValue": "={{ $json.message.chat.first_name }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        512
+      ],
+      "id": "b65a04fa-d420-4f11-8cce-3ae4e336a472",
+      "name": "Create a row",
+      "credentials": {
+        "supabaseApi": {
+          "id": "dvd3HcUwrJuu7HgE",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "topK": 40
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1.1,
+      "position": [
+        400,
+        912
+      ],
+      "id": "b4f172c6-1aa5-4383-a6ab-940ffb236bbf",
+      "name": "Answer questions with a vector store"
+    },
+    {
+      "parameters": {
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {
+          "queryName": "match_documents",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "info_hub_docs"
+              }
+            ]
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        1104
+      ],
+      "id": "8ca8a402-44ca-4ddb-9a2a-c58130b989ce",
+      "name": "Supabase Vector Store",
+      "credentials": {
+        "supabaseApi": {
+          "id": "dvd3HcUwrJuu7HgE",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-5-nano"
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        512,
+        1104
+      ],
+      "id": "430acb57-dcac-449b-b1c7-64917152f592",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "79uqRJuY9Jyb9Jex",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        1248
+      ],
+      "id": "4e1833cb-291d-473b-a2d5-6fd4347647b7",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "79uqRJuY9Jyb9Jex",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.chunk }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        864,
+        512
+      ],
+      "id": "7f053bd4-09a3-4207-bf8a-2b7623c0b56f",
+      "name": "Send a text message1",
+      "webhookId": "4ac6cab9-938c-436c-9ef9-0cf51088e182",
+      "credentials": {
+        "telegramApi": {
+          "id": "9IPzQT6Lwr3lO8l2",
+          "name": "Telegram n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "*"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1024,
+        112
+      ],
+      "id": "c1401f63-0989-43d2-a7c2-23f5b720da9e",
+      "name": "Telegram Trigger",
+      "webhookId": "e3969e39-2812-4d63-884d-cc4879e538be",
+      "credentials": {
+        "telegramApi": {
+          "id": "9IPzQT6Lwr3lO8l2",
+          "name": "Telegram n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "chat_histories",
+          "mode": "list",
+          "cachedResultName": "chat_histories"
+        },
+        "deleteCommand": "delete",
+        "where": {
+          "values": [
+            {
+              "column": "session_id",
+              "value": "130465752"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -320,
+        64
+      ],
+      "id": "d441137b-6e15-41dd-90e6-fcf0a27eb0aa",
+      "name": "Delete table or rows",
+      "credentials": {
+        "postgres": {
+          "id": "0yoQ2hzmPR3kCl1H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "Здравствуйте, это Бот-юрист\nБот запущен, ожидает вашего сообщения...\n---\nДля очистки памяти бота наберите /clear\nДля вызова справки /help",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Очистить память",
+                    "additionalFields": {
+                      "callback_data": "/clear"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Помощь",
+                    "additionalFields": {
+                      "callback_data": "/help"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        -112
+      ],
+      "id": "0c5aafb3-1f8d-469b-b5bd-e8f04e8261b3",
+      "name": "start message",
+      "webhookId": "27d78c58-8a4d-4a32-b894-bdad9ecac65a",
+      "credentials": {
+        "telegramApi": {
+          "id": "9IPzQT6Lwr3lO8l2",
+          "name": "Telegram n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Память бота очищена",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -128,
+        64
+      ],
+      "id": "637a8379-9fb7-49ba-bc8a-5abc5566ef44",
+      "name": "clear message",
+      "webhookId": "e68a518a-3786-41ea-9765-d38d65511adb",
+      "credentials": {
+        "telegramApi": {
+          "id": "9IPzQT6Lwr3lO8l2",
+          "name": "Telegram n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "Бот имеет встроенную память диалогов для ее очищения наберите /clear.\nПри возникновении проблем, вы всегда можете обратиться к администратору @yuriy38",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        256
+      ],
+      "id": "6d51cc07-d101-46c5-86b3-7689e76dec35",
+      "name": "help message",
+      "webhookId": "83f8e301-cd2e-4f9f-b78d-d723167eebf6",
+      "credentials": {
+        "telegramApi": {
+          "id": "9IPzQT6Lwr3lO8l2",
+          "name": "Telegram n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        672,
+        912
+      ],
+      "id": "3347d2c4-fe8c-4849-8faf-3eca00417b70",
+      "name": "Search in Tavily",
+      "credentials": {
+        "tavilyApi": {
+          "id": "rrJFqGWawplEsRLp",
+          "name": "Tavily account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "claude-sonnet-4-20250514",
+          "cachedResultName": "Claude 4 Sonnet"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        272,
+        736
+      ],
+      "id": "c151b704-d439-414f-aa0f-c60ebe03d3f2",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "Z5J8mGZbmvN1dYke",
+          "name": "ProxyApi Anthropic"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendChatAction",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        128,
+        512
+      ],
+      "id": "9f6eeb12-cc00-4bf2-a3b0-a0204a58e553",
+      "name": "pishem...",
+      "webhookId": "b9d0e86c-9206-4eba-86de-020a4985e9ca",
+      "credentials": {
+        "telegramApi": {
+          "id": "9IPzQT6Lwr3lO8l2",
+          "name": "Telegram n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Генерация ответа пользователю",
+        "height": 944,
+        "width": 1456,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -160,
+        448
+      ],
+      "typeVersion": 1,
+      "id": "69191e21-3be9-4cca-9557-ec48db467e12",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Блок работы бота",
+        "height": 928,
+        "width": 1152
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1072,
+        -496
+      ],
+      "typeVersion": 1,
+      "id": "bec3b704-bc7e-463f-9f6f-be438c066cbe",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $input.first().json.output; // Замените на ваше поле с текстом\nconst limit = 4000; // Оставляем запас от лимита 4096\nconst chunks = [];\n\nif (text.length <= limit) {\n    return [{ json: { chunk: text } }];\n}\n\nlet currentChunk = \"\";\nconst paragraphs = text.split('\\n');\n\nfor (const paragraph of paragraphs) {\n    if ((currentChunk + paragraph).length < limit) {\n        currentChunk += paragraph + \"\\n\";\n    } else {\n        chunks.push({ json: { chunk: currentChunk.trim() } });\n        currentChunk = paragraph + \"\\n\";\n    }\n}\n\nif (currentChunk) {\n    chunks.push({ json: { chunk: currentChunk.trim() } });\n}\n\nreturn chunks;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        656,
+        512
+      ],
+      "id": "20469dff-f333-43ff-8648-9746cc2d1e61",
+      "name": "Split message"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "16b8ffc7-5e3a-4bfd-8fbd-2bcc5aab2231",
+              "leftValue": "={{ $json.callback_query.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -832,
+        112
+      ],
+      "id": "b7af8756-4289-4396-a051-baadd43f24c2",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+                    "rightValue": "/start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "3cf4cdc1-a260-42d8-ad19-2f633d998eee"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "start"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ac71c273-a791-4baa-8aed-2cd167a15b6c",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+                    "rightValue": "/clear",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "clear"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "abe7dfd3-59bc-4d6d-a095-f96d9e422a74",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+                    "rightValue": "/help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "help"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3d7f1da7-1b29-4cae-8d5f-108749b9eae0",
+                    "leftValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+                    "rightValue": "/",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notStartsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "text"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -592,
+        208
+      ],
+      "id": "e5c1da78-fa4f-4df2-a5d2-bbee8ff53dfd",
+      "name": "Switch command"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.callback_query.data }}",
+                    "rightValue": "/clear",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "534ad54c-f30a-4150-8a96-8be966d1720b"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "clear"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "19a76273-1a68-4fc8-b689-92131abbc3ef",
+                    "leftValue": "={{ $json.callback_query.data }}",
+                    "rightValue": "/help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "help"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -592,
+        -384
+      ],
+      "id": "f9a91b41-15d9-48db-873b-d81e7a8c02c0",
+      "name": "Switch callback"
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "chat_histories",
+          "mode": "list",
+          "cachedResultName": "chat_histories"
+        },
+        "deleteCommand": "delete",
+        "where": {
+          "values": [
+            {
+              "column": "session_id",
+              "value": "130465752"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -320,
+        -448
+      ],
+      "id": "9bb52559-501d-4685-bc8c-09a91181ef59",
+      "name": "Delete table or rows1",
+      "credentials": {
+        "postgres": {
+          "id": "0yoQ2hzmPR3kCl1H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "text": "Память бота очищена",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -128,
+        -448
+      ],
+      "id": "8f858e9c-ffff-49e3-8ff1-f6daa6b91ae1",
+      "name": "Send a text message",
+      "webhookId": "7a6388e3-7973-4863-a34d-050138f6090d",
+      "credentials": {
+        "telegramApi": {
+          "id": "9IPzQT6Lwr3lO8l2",
+          "name": "Telegram n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.callback_query.message.chat.id }}",
+        "text": "Бот имеет встроенную память диалогов для ее очищения наберите /clear.\nПри возникновении проблем, вы всегда можете обратиться к администратору @yuriy38",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        -288
+      ],
+      "id": "56ad2cb6-8e6b-44ea-a92c-e9916aa4c869",
+      "name": "Send a text message2",
+      "webhookId": "5581f305-4872-4f5e-9cde-c8cd46280c53",
+      "credentials": {
+        "telegramApi": {
+          "id": "9IPzQT6Lwr3lO8l2",
+          "name": "Telegram n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1024,
+        512
+      ],
+      "id": "c5c94d57-f08b-457c-92fb-10a71a8e678d",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "130465752",
+        "text": "=Ошибка, шаблон: threads, log: {{ $json.execution.error.message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -832,
+        512
+      ],
+      "id": "f7f754c1-7b7a-4bb2-b504-ce7c93e0ec5d",
+      "name": "Send a text message3",
+      "webhookId": "a23dab8b-c334-4d37-a3ce-5f368cede2df",
+      "credentials": {
+        "telegramApi": {
+          "id": "9IPzQT6Lwr3lO8l2",
+          "name": "Telegram n8n bot"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Split message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row": {
+      "main": [
+        [
+          {
+            "node": "pishem...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Answer questions with a vector store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Answer questions with a vector store",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Answer questions with a vector store",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message1": {
+      "main": [
+        [
+          {
+            "node": "Create a row1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete table or rows": {
+      "main": [
+        [
+          {
+            "node": "clear message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search in Tavily": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "help message": {
+      "main": [
+        []
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "pishem...": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split message": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Switch callback",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch command": {
+      "main": [
+        [
+          {
+            "node": "start message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete table or rows",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "help message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch callback": {
+      "main": [
+        [
+          {
+            "node": "Delete table or rows1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete table or rows1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "none",
+    "saveManualExecutions": false,
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "20343502-d83c-4b4a-9ca9-f72247cc74ea",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3e6e6c8687fc674826fca330ddc07edc1bc856bf640a801fb6169ed2805581b6"
+  },
+  "id": "4cpKqzHl9gZkqQWJ",
+  "tags": []
+}
